@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="public/crossing.png" />
+  <title>Animal Crossing Web</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: url("public/fons.webp") center/cover no-repeat;      
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #2b7a4b;
+      text-shadow: 2px 2px #b3e3b3;
+    }
+
+    p {
+      color: #3f3b2e;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 90vw;
+      max-width: 1100px;
+    }
+
+    section {
+      background: #c5be80;
+      padding: 15px;
+      border-radius: 20px;
+      border: 2px solid #504923;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px black;
+    }
+
+    button {
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #6b8e23;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #556b2f;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow-y: auto;
+      }
+      section {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="public/cross.png" alt="Logo" style="width: 400px; height: auto; image-rendering: crisp-edges; margin-top: -10px;" />
+  </header>
+
+  <button onclick="playMusic()">Reproducir música</button>
+  <audio id="music" src="public/acww.mp4"></audio>
+
+  <div class="container">
+    <section>
+      <h2>Juego</h2>
+      <p>Animal Crossing: Wild World es la segunda entrega principal de la saga Animal Crossing, lanzada en 2005 para Nintendo DS. Fue el primer juego de la serie diseñado especialmente para una consola portátil, lo que permitió jugar y visitar tu pueblo en cualquier momento.</p>
+    </section>
+
+    <section>
+      <h2>Imagenes</h2>
+      <div class="gallery">
+        <img src="public/wild.jpeg" alt="1" onclick="openModal(this.src)" />
+        <img src="public/a.jpg" alt="2" onclick="openModal(this.src)" />
+        <img src="public/c.png" alt="3" onclick="openModal(this.src)" />
+        <img src="public/w.avif" alt="4" onclick="openModal(this.src)" />
+        <img src="public/b.webp" alt="5" onclick="openModal(this.src)" />
+        <img src="public/ud.jpg" alt="6" onclick="openModal(this.src)" />
+      </div>
+    </section>
+
+    <section>
+      <h2>Recuerdos</h2>
+      <p>Animal Crossing: Wild World genera tanta fama y nostalgia porque fue el primer título de la saga que muchos jugadores llevaron consigo a todas partes gracias a la Nintendo DS, convirtiéndose en una rutina diaria muy personal. Su sistema en tiempo real hacía que cada momento vivido en el pueblo se asociara a etapas reales de la vida del jugador.</p>
+    </section>
+  </div>
+
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg" />
+  </div>
+
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById("modal");
+      document.getElementById("modalImg").src = src;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    function playMusic() {
+      const music = document.getElementById("music");
+      music.play();
+    }
+  </script>
+</body>
+</html>
